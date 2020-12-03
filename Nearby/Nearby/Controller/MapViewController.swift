@@ -6,50 +6,19 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MapViewController: UIViewController {
 
+    let locationManger = CLLocationManager()
+    var latitude: Double = 37.7994
+    var longitude: Double = 122.3950
+    
     var pulseLayer: CAShapeLayer!
-
-    let fetchButton: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "FetchButton"), for: .normal)
-        button.addTarget(self, action: #selector(fetchButtonTapped), for: .allEvents)
-        return button
-    }()
     
-    let fetchLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Fetch"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = UIColor(named: "mainBGColor")
-        label.textAlignment = .center
-        return label
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "mainBGColor")
+    lazy var containerView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 270, height: 270))
         
-        createPulse()
-        
-        view.addSubview(fetchButton)
-        fetchButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        fetchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        fetchButton.anchor(width: 200, height: 200)
-        
-        view.addSubview(fetchLabel)
-        fetchLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        fetchLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        fetchLabel.anchor(top: fetchButton.topAnchor,
-                          right: fetchButton.rightAnchor,
-                          paddingTop: fetchButton.layer.frame.size.height / 2,
-                          paddingRight: 50)
-        
-    }
-    
-    
-    func createPulse()  {
         let circularPath = UIBezierPath(arcCenter: .zero, radius: 100, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
         let image = UIImage(named: "Ellipse")
         pulseLayer = CAShapeLayer()
@@ -63,7 +32,118 @@ class MapViewController: UIViewController {
         pulseLayer.position = view.center
         view.layer.addSublayer(pulseLayer)
         
+        return view
+    }()
+    
+    let currentTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "00:00:00"
+        label.font = UIFont.boldSystemFont(ofSize: 48)
+        label.textColor = .white
+        return label
+    }()
+    
+    let countryLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Saudi Arabia"
+        label.font = UIFont.systemFont(ofSize: 24)
+        label.textColor = .white
+        return label
+    }()
+    
+    var cityLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Riyadh"
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = .white
+        return label
+    }()
+    
+    
+    let fetchButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Fetch", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Menlo", size: 20)
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(fetchButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    let fetchAboveButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "FetchButton"), for: .normal)
+        return button
+    }()
+    
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .medium
+        formatter.dateFormat = "HH:mm:ss"
+        return formatter
+    }()
+    
+    let mapImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "map")
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    
+    //MARK: - Override Functions
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor(named: "mainBGColor")
+        
+        setupUI()
+        setupLocationManger()
+        
     }
+    
+    //MARK: - Functions
+    
+    func setupUI() {
+        
+        view.addSubview(mapImage)
+        mapImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        mapImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 60, paddingLeft: 10, paddingRight: 10)
+
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        
+        view.addSubview(currentTimeLabel)
+        currentTimeLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        currentTimeLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 40)
+        
+        view.addSubview(countryLabel)
+       countryLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+       countryLabel.anchor(top: currentTimeLabel.bottomAnchor, paddingTop: 5)
+        
+        view.addSubview(cityLabel)
+        cityLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        cityLabel.anchor(top: countryLabel.bottomAnchor, paddingTop: 10)
+
+        view.addSubview(containerView)
+        containerView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        containerView.anchor(top: mapImage.bottomAnchor,
+                             paddingTop: 15,
+                             width: 270, height: 270)
+        
+        view.addSubview(fetchAboveButton)
+        fetchAboveButton.anchor(top: mapImage.bottomAnchor,
+                           left: view.leftAnchor,
+                           right: view.rightAnchor,
+                           paddingTop: 50,
+                           width: 200, height: 200)
+        
+        view.addSubview(fetchButton)
+        fetchButton.anchor(top: mapImage.bottomAnchor,
+                           left: view.leftAnchor,
+                           right: view.rightAnchor,
+                           paddingTop: 50,
+                           width: 200, height: 200)
+    }
+    
     
     private func scaleAnimation() {
         let animation = CABasicAnimation(keyPath: "transform.scale")
@@ -84,13 +164,61 @@ class MapViewController: UIViewController {
         pulseLayer.add(animation, forKey: "fade")
     }
     
-    //MARK: - @objc
+    func setupLocationManger() {
+        locationManger.delegate = self
+        locationManger.desiredAccuracy = kCLLocationAccuracyBest
+        locationManger.requestWhenInUseAuthorization()
+        locationManger.startUpdatingLocation()
+        //locationManger.
+    }
+    
+    
+    
+    //MARK: - Selectors
+    
+    @objc func updateTime() {
+        let now = Date()
+        currentTimeLabel.text = dateFormatter.string(from: now)
+    }
+    
     @objc func fetchButtonTapped() {
-        fetchLabel.textColor = UIColor(named: "Red")
-        fetchLabel.text = "Fetching"
+        fetchButton.setTitle("Fetching", for: .normal)
+        fetchButton.setTitleColor(UIColor(named: "mainBGColor"), for: .normal)
+        
         scaleAnimation()
         opacityAnimation()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+5) {
+            FlickrAPI.shared.fetchList(lat: "37.7994", long: "122.3950")
+            
+            self.pulseLayer.removeAllAnimations()
+            self.fetchButton.setTitle("Done!", for: .normal)
+            self.performSegue(withIdentifier: "collectionVC", sender: nil)
+        }
     }
 
 }
 
+extension MapViewController: CLLocationManagerDelegate{
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else { return }
+        
+        latitude = location.coordinate.latitude
+        longitude = location.coordinate.longitude
+        
+        
+        print("latitude: \(latitude), logitude: \(longitude)")
+        
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location update failed, \(error)")
+    }
+}
+
+/*
+ photoID: "49953516761", dateTaken: nil),
+ Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953019053", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953019063", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804272", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953516751", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953019078", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804212", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804197", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804217", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953516736", dateTaken: nil),
+*/
