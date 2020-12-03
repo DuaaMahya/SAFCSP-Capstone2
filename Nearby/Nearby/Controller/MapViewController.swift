@@ -10,12 +10,21 @@ import CoreLocation
 
 class MapViewController: UIViewController {
 
+    // CoreLocation
+    
     let locationManger = CLLocationManager()
     var latitude: Double = 37.7994
     var longitude: Double = 122.3950
+    // geocoder
+    let geocoder = CLGeocoder()
+    var placemark: CLPlacemark?
+    var isPerformingReverseGeocoding = false
+    var lastGeocodingError: Error?
+    
+    // UI Components
     
     var pulseLayer: CAShapeLayer!
-    
+
     lazy var containerView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 270, height: 270))
         
@@ -45,7 +54,7 @@ class MapViewController: UIViewController {
     
     let countryLabel: UILabel = {
         let label = UILabel()
-        label.text = "Saudi Arabia"
+        label.text = "Country"
         label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .white
         return label
@@ -53,7 +62,7 @@ class MapViewController: UIViewController {
     
     var cityLabel: UILabel = {
         let label = UILabel()
-        label.text = "Riyadh"
+        label.text = "City"
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = .white
         return label
@@ -96,14 +105,14 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "mainBGColor")
         
-        setupUI()
+        updateUI()
         setupLocationManger()
         
     }
     
     //MARK: - Functions
     
-    func setupUI() {
+    func updateUI() {
         
         view.addSubview(mapImage)
         mapImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
@@ -142,6 +151,20 @@ class MapViewController: UIViewController {
                            right: view.rightAnchor,
                            paddingTop: 50,
                            width: 200, height: 200)
+        
+        if let placemark = placemark {
+            countryLabel.text = getCountry(from: placemark)
+            cityLabel.text = getCity(from: placemark)
+        } else if isPerformingReverseGeocoding {
+            countryLabel.text = "Serching..."
+            cityLabel.text = "Serching..."
+        } else if lastGeocodingError != nil {
+            countryLabel.text = "error :("
+            cityLabel.text = "error :("
+        } else {
+            countryLabel.text = "not found"
+            cityLabel.text = "not found"
+        }
     }
     
     
@@ -169,7 +192,24 @@ class MapViewController: UIViewController {
         locationManger.desiredAccuracy = kCLLocationAccuracyBest
         locationManger.requestWhenInUseAuthorization()
         locationManger.startUpdatingLocation()
-        //locationManger.
+    }
+    
+    func getCountry(from placemark: CLPlacemark) -> String {
+        var countryString = ""
+        if let country = placemark.country {
+            countryString += country
+        }
+        
+        return countryString
+    }
+    
+    func getCity(from placemark: CLPlacemark) -> String {
+        var cityString = ""
+        if let country = placemark.locality {
+            cityString += country
+        }
+        
+        return cityString
     }
     
     
@@ -209,6 +249,25 @@ extension MapViewController: CLLocationManagerDelegate{
         
         
         print("latitude: \(latitude), logitude: \(longitude)")
+        
+        if location != nil {
+            if !isPerformingReverseGeocoding {
+                print("*** Start performing geocoding ***")
+                isPerformingReverseGeocoding = true
+                
+                geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                    self.lastGeocodingError = error
+                    if error == nil, let placemarks = placemarks, !placemarks.isEmpty {
+                        self.placemark = placemarks.last!
+                    }else {
+                        self.placemark = nil
+                    }
+                    
+                    self.isPerformingReverseGeocoding = false
+                    self.updateUI()
+                }
+            }
+        }
         
         
     }
