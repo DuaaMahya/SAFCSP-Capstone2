@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fQl-pg-gty">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -10,24 +10,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search for photos-->
+        <!-- -->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Nearby" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search for photos" id="Tzp-XT-DeC">
+                    <navigationItem key="navigationItem" title=" " id="Tzp-XT-DeC">
                         <barButtonItem key="backBarButtonItem" title=" " id="bHK-P4-T2B"/>
-                        <barButtonItem key="rightBarButtonItem" title="=" id="1LB-pA-QyG">
-                            <connections>
-                                <segue destination="1Zh-hQ-hYX" kind="show" id="cIh-Ca-VI2"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="1Zh-hQ-hYX" kind="show" identifier="collectionVC" id="pQy-Lj-LAy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -38,51 +36,44 @@
             <objects>
                 <viewController id="1Zh-hQ-hYX" customClass="FlickrPhotosViewController" customModule="Nearby" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nSK-zw-9it">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-Zd-hJl">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="6" minimumInteritemSpacing="6" id="s8s-GO-7Rt">
-                                    <size key="itemSize" width="118" height="184"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="6" minimumInteritemSpacing="16" id="s8s-GO-7Rt">
+                                    <size key="itemSize" width="110" height="184"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="3" minY="6" maxX="3" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="6" minY="6" maxX="6" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="vWU-xg-dKA" customClass="FlickrPhotosCollectionViewCell" customModule="Nearby" customModuleProvider="target">
-                                        <rect key="frame" x="3" y="6.5" width="118" height="183.5"/>
+                                        <rect key="frame" x="6" y="6.5" width="110" height="183.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ksl-Gl-Dv6">
-                                            <rect key="frame" x="0.0" y="0.0" width="118" height="183.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="183.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qze-7f-LTC">
-                                                    <rect key="frame" x="92.5" y="8" width="17.5" height="12"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                                    <nil key="textColor"/>
-                                                    <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ol3-df-DBi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="118" height="183.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="183.5"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gt9-el-Jft">
-                                                            <rect key="frame" x="0.0" y="0.0" width="118" height="140"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images" translatesAutoresizingMaskIntoConstraints="NO" id="gt9-el-Jft">
+                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="140"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="118" id="7vF-ss-QE4"/>
+                                                                <constraint firstAttribute="width" constant="110" id="7vF-ss-QE4"/>
                                                                 <constraint firstAttribute="height" constant="140" id="KwN-Ua-sSA"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyU-lK-yWh">
-                                                            <rect key="frame" x="0.0" y="145" width="118" height="13.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyU-lK-yWh">
+                                                            <rect key="frame" x="0.0" y="145" width="110" height="13.5"/>
+                                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="11"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IIP-PA-0rX">
-                                                            <rect key="frame" x="0.0" y="163.5" width="118" height="20"/>
+                                                            <rect key="frame" x="0.0" y="163.5" width="110" height="20"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Fj-KR-vT8">
                                                                     <rect key="frame" x="0.0" y="3" width="30" height="13.5"/>
@@ -93,7 +84,7 @@
                                                                     <imageReference key="image" image="eye" catalog="system" symbolScale="small"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-4Z-i2H">
-                                                                    <rect key="frame" x="30" y="0.0" width="88" height="20"/>
+                                                                    <rect key="frame" x="30" y="0.0" width="80" height="20"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -102,14 +93,21 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qze-7f-LTC">
+                                                    <rect key="frame" x="84.5" y="8" width="17.5" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <size key="shadowOffset" width="0.0" height="1"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ol3-df-DBi" firstAttribute="leading" secondItem="Ksl-Gl-Dv6" secondAttribute="leading" id="7c9-1W-LSG"/>
                                                 <constraint firstItem="ol3-df-DBi" firstAttribute="top" secondItem="Ksl-Gl-Dv6" secondAttribute="top" id="UKU-nZ-pjZ"/>
                                                 <constraint firstItem="qze-7f-LTC" firstAttribute="top" secondItem="Ksl-Gl-Dv6" secondAttribute="top" constant="8" id="Zgk-QS-k38"/>
-                                                <constraint firstItem="qze-7f-LTC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ksl-Gl-Dv6" secondAttribute="leading" constant="20" symbolic="YES" id="dwf-Da-ftk"/>
                                                 <constraint firstAttribute="trailing" secondItem="qze-7f-LTC" secondAttribute="trailing" constant="8" id="pd5-h8-TJV"/>
                                                 <constraint firstAttribute="bottom" secondItem="ol3-df-DBi" secondAttribute="bottom" id="rlu-m3-E95"/>
+                                                <constraint firstItem="qze-7f-LTC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ksl-Gl-Dv6" secondAttribute="leading" constant="20" symbolic="YES" id="uUq-J2-aD1"/>
                                                 <constraint firstAttribute="trailing" secondItem="ol3-df-DBi" secondAttribute="trailing" id="vqm-0M-gEs"/>
                                             </constraints>
                                         </collectionViewCellContentView>
@@ -121,18 +119,18 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VJu-oU-fSi">
-                                        <rect key="frame" x="127" y="6" width="118" height="184"/>
+                                        <rect key="frame" x="132" y="6" width="110" height="184"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dCE-Vh-O4G">
-                                            <rect key="frame" x="0.0" y="0.0" width="118" height="184"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="184"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tyf-Eo-vcH">
-                                        <rect key="frame" x="251" y="6" width="118" height="184"/>
+                                        <rect key="frame" x="258" y="6" width="110" height="184"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yYV-U3-mR7">
-                                            <rect key="frame" x="0.0" y="0.0" width="118" height="184"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="184"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
@@ -163,7 +161,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fQl-pg-gty" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="zxs-XH-b2z">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -178,6 +176,7 @@
     </scenes>
     <resources>
         <image name="eye" catalog="system" width="128" height="81"/>
+        <image name="images" width="190" height="193"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
