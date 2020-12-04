@@ -229,7 +229,7 @@ class MapViewController: UIViewController {
         opacityAnimation()
         
         DispatchQueue.main.asyncAfter(deadline: .now()+5) {
-            FlickrAPI.shared.fetchList(lat: "37.7994", long: "122.3950")
+            FlickrAPI.shared.fetchList(lat: self.latitude, long: self.longitude)
             
             self.pulseLayer.removeAllAnimations()
             self.fetchButton.setTitle("Done!", for: .normal)
@@ -276,7 +276,6 @@ extension MapViewController: CLLocationManagerDelegate{
         print("Location update failed, \(error)")
     }
 }
-
 /*
  photoID: "49953516761", dateTaken: nil),
  Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953019053", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953019063", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804272", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953516751", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953019078", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804212", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804197", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804217", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953516736", dateTaken: nil),

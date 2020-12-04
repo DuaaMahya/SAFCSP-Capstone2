@@ -7,21 +7,24 @@
 
 import Foundation
 
-enum EndPoint: String {
-    case flickrURL = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=fa010d860c01f7c131d13f7d71a3c326"
+struct EndPoint {
+    
+    static let flickrBaseURL: String = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=efb1e227a9b58dc7e39f9c8ea2ecea73"
     
     static func fillURL(lat: Double, long: Double) -> String {
-        return flickrURL.rawValue + "&user_id=&lat=\(lat)&lon=\(long)&radius=&format=json&nojsoncallback=1&api_sig=91abab52cfb70c4fa402dabd25030b3e"
+        return flickrBaseURL +  "&lat=\(lat)&lon=\(long)&radius=20&format=json&nojsoncallback=1"
     }
 }
+
+//49953516761
 
 final class FlickrAPI {
     
     static let shared = FlickrAPI()
     
-    func fetchList(lat: String, long: String) {
+    func fetchList(lat: Double, long: Double) {
         
-        let urlString = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=fa010d860c01f7c131d13f7d71a3c326&user_id=&lat=\(lat)&lon=\(long)&radius=&format=json&nojsoncallback=1&api_sig=91abab52cfb70c4fa402dabd25030b3e"
+        let urlString = EndPoint.fillURL(lat: lat, long: long)
         
         let url = URL(string: urlString)!
         
