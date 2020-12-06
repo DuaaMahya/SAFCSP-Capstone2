@@ -9,10 +9,14 @@ import Foundation
 
 struct EndPoint {
     
-    static let flickrBaseURL: String = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=efb1e227a9b58dc7e39f9c8ea2ecea73"
+    static let flickrBaseURL: String = "https://www.flickr.com/services/rest"
+    
+    static let photoSearch: String = "flickr.photos.search"
+    
+    static let apiKey: String = "21f0fc62833b74d78e19b3b6753a8aad"
     
     static func fillURL(lat: Double, long: Double) -> String {
-        return flickrBaseURL +  "&lat=\(lat)&lon=\(long)&radius=20&format=json&nojsoncallback=1"
+        return flickrBaseURL + "/?method=" + photoSearch + "&api_key=" + apiKey + "&lat=\(lat)&lon=\(long)&radius=20&format=json&nojsoncallback=1"
     }
 }
 
@@ -21,29 +25,97 @@ struct EndPoint {
 final class FlickrAPI {
     
     static let shared = FlickrAPI()
+    private var dataTask: URLSessionDataTask?
+    var locations = MapViewController()
     
-    func fetchList(lat: Double, long: Double) {
+    func getData(lat: Double, long: Double, completion: @escaping (Result<FlickrResponse,Error>) -> Void) {
         
-        let urlString = EndPoint.fillURL(lat: lat, long: long)
-        
-        let url = URL(string: urlString)!
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, resp, error) in
-            
-            guard let data = data else {
-                print("didn't find any data.")
-                return
+        if let url = URL(string: EndPoint.fillURL(lat: lat, long: long)) {
+            // 2. Create URLSession
+            let session = URLSession(configuration: .default)
+            // 3.Give a task
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if let error = error {
+                    print("Data task error. \(error)")
+                    completion(.failure(error))
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse else {
+                    print("Empty Response.")
+                    return
+                }
+                
+                print("response status code:\(response.statusCode)")
+                
+                guard let data = data else {
+                    print("Empty Data.")
+                    return
+                }
+                
+                do {
+                    let decoder = JSONDecoder()
+                    let flickrResponse = try decoder.decode(FlickrResponse.self, from: data)
+                    
+                    DispatchQueue.main.async {
+                        completion(.success(flickrResponse))
+                    }
+                    
+                }catch let error{
+                    completion(.failure(error))
+                }
             }
             
-            guard let flickrResponse = try? JSONDecoder().decode(FlickrResponse.self, from: data) else {
-                print("couldn't decode json")
-                return
-            }
-            
-            print(flickrResponse.photosInfo)
+            // 4. Start the task
+            task.resume()
         }
         
-        task.resume()
     }
     
+    
+    func getPopularMoviesData(completion: @escaping (Result<FlickrResponse, Error>) -> Void) {
+        
+        
+        guard let url = URL(string: EndPoint.fillURL(lat: locations.latitude, long: locations.longitude)) else {return}
+        
+        // Create URL Session - work on the background
+        dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            // Handle Error
+            if let error = error {
+                completion(.failure(error))
+                print("DataTask error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                // Handle Empty Response
+                print("Empty Response")
+                return
+            }
+            print("Response status code: \(response.statusCode)")
+            
+            guard let data = data else {
+                // Handle Empty Data
+                print("Empty Data")
+                return
+            }
+            
+            do {
+                // Parse the data
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode(FlickrResponse.self, from: data)
+                
+                // Back to the main thread
+                DispatchQueue.main.async {
+                    completion(.success(jsonData))
+                }
+            } catch let error {
+                completion(.failure(error))
+            }
+            
+        }
+        dataTask?.resume()
+    }
 }

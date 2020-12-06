@@ -30,12 +30,20 @@ struct FlickrPhoto: Codable {
     let remoteURL: URL?
     let photoID: String
     let dateTaken: Date?
+    let owner: String
+    let secret: String
+    let server: String
+    let farm: Int
     
     enum CodingKeys: String, CodingKey {
         case title
         case remoteURL = "url_z"
         case photoID = "id"
         case dateTaken = "datetaken"
+        case owner
+        case secret
+        case server
+        case farm
     }
 }
 
