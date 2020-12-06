@@ -23,6 +23,8 @@
 		408A28122576E87600EFD64F /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408A28112576E87600EFD64F /* PulseAnimation.swift */; };
 		408B6C03257C48BC007DAE00 /* PhotoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408B6C02257C48BC007DAE00 /* PhotoCache.swift */; };
 		40FA1E04257CFDE800A463E0 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FA1E03257CFDE800A463E0 /* PhotoModel.swift */; };
+		40FA1E56257D52A200A463E0 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FA1E55257D52A200A463E0 /* PhotosTableViewCell.swift */; };
+		40FA1E69257D54B900A463E0 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FA1E68257D54B900A463E0 /* PhotosViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		408A28112576E87600EFD64F /* PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
 		408B6C02257C48BC007DAE00 /* PhotoCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCache.swift; sourceTree = "<group>"; };
 		40FA1E03257CFDE800A463E0 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		40FA1E55257D52A200A463E0 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		40FA1E68257D54B900A463E0 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 			children = (
 				408A27C72576445100EFD64F /* Main.storyboard */,
 				403A733F2577D79100C6E1BD /* FlickrPhotosCollectionViewCell.swift */,
+				40FA1E55257D52A200A463E0 /* PhotosTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 			children = (
 				408A27C52576445100EFD64F /* MapViewController.swift */,
 				403A734C2577D80E00C6E1BD /* FlickrPhotosViewController.swift */,
+				40FA1E68257D54B900A463E0 /* PhotosViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -314,6 +320,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40FA1E56257D52A200A463E0 /* PhotosTableViewCell.swift in Sources */,
+				40FA1E69257D54B900A463E0 /* PhotosViewController.swift in Sources */,
 				408A27C62576445100EFD64F /* MapViewController.swift in Sources */,
 				408A27FE257652E200EFD64F /* FlickrAPI.swift in Sources */,
 				408A27C22576445000EFD64F /* AppDelegate.swift in Sources */,

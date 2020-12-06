@@ -233,7 +233,7 @@ class MapViewController: UIViewController {
             
             self.pulseLayer.removeAllAnimations()
             self.fetchButton.setTitle("Done!", for: .normal)
-            self.performSegue(withIdentifier: "collectionVC", sender: nil)
+            self.performSegue(withIdentifier: "tableVC", sender: nil)
         }
     }
 
@@ -264,7 +264,8 @@ extension MapViewController: CLLocationManagerDelegate{
                     }
                     
                     self.isPerformingReverseGeocoding = false
-                    //self.updateUI()
+                    self.updateUI()
+                    self.locationManger.stopUpdatingLocation()
                 }
             }
         }
