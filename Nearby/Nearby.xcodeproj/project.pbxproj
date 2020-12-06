@@ -21,6 +21,8 @@
 		408A27FE257652E200EFD64F /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408A27FD257652E200EFD64F /* FlickrAPI.swift */; };
 		408A280D2576E75600EFD64F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408A280C2576E75600EFD64F /* Utilities.swift */; };
 		408A28122576E87600EFD64F /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408A28112576E87600EFD64F /* PulseAnimation.swift */; };
+		408B6C03257C48BC007DAE00 /* PhotoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408B6C02257C48BC007DAE00 /* PhotoCache.swift */; };
+		40FA1E04257CFDE800A463E0 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FA1E03257CFDE800A463E0 /* PhotoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		408A27FD257652E200EFD64F /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		408A280C2576E75600EFD64F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		408A28112576E87600EFD64F /* PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
+		408B6C02257C48BC007DAE00 /* PhotoCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCache.swift; sourceTree = "<group>"; };
+		40FA1E03257CFDE800A463E0 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,8 +149,10 @@
 		408A27F72576508300EFD64F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				408A27FD257652E200EFD64F /* FlickrAPI.swift */,
 				4054EB9B2579186300089854 /* FlickrPhoto.swift */,
+				408A27FD257652E200EFD64F /* FlickrAPI.swift */,
+				40FA1E03257CFDE800A463E0 /* PhotoModel.swift */,
+				408B6C02257C48BC007DAE00 /* PhotoCache.swift */,
 				408A28112576E87600EFD64F /* PulseAnimation.swift */,
 			);
 			path = Model;
@@ -315,7 +321,9 @@
 				4054EB9C2579186300089854 /* FlickrPhoto.swift in Sources */,
 				403A734D2577D80E00C6E1BD /* FlickrPhotosViewController.swift in Sources */,
 				403A73402577D79100C6E1BD /* FlickrPhotosCollectionViewCell.swift in Sources */,
+				408B6C03257C48BC007DAE00 /* PhotoCache.swift in Sources */,
 				408A28122576E87600EFD64F /* PulseAnimation.swift in Sources */,
+				40FA1E04257CFDE800A463E0 /* PhotoModel.swift in Sources */,
 				408A27C42576445000EFD64F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

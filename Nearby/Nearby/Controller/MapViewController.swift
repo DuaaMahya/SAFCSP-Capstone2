@@ -10,8 +10,8 @@ import CoreLocation
 
 class MapViewController: UIViewController {
 
-    // CoreLocation
     
+    // CoreLocation
     let locationManger = CLLocationManager()
     var latitude: Double = 37.7994
     var longitude: Double = 122.3950
@@ -22,7 +22,6 @@ class MapViewController: UIViewController {
     var lastGeocodingError: Error?
     
     // UI Components
-    
     var pulseLayer: CAShapeLayer!
 
     lazy var containerView: UIView = {
@@ -228,8 +227,9 @@ class MapViewController: UIViewController {
         scaleAnimation()
         opacityAnimation()
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+5) {
-            FlickrAPI.shared.fetchList(lat: self.latitude, long: self.longitude)
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+            
+
             
             self.pulseLayer.removeAllAnimations()
             self.fetchButton.setTitle("Done!", for: .normal)
@@ -264,7 +264,7 @@ extension MapViewController: CLLocationManagerDelegate{
                     }
                     
                     self.isPerformingReverseGeocoding = false
-                    self.updateUI()
+                    //self.updateUI()
                 }
             }
         }
@@ -276,7 +276,3 @@ extension MapViewController: CLLocationManagerDelegate{
         print("Location update failed, \(error)")
     }
 }
-/*
- photoID: "49953516761", dateTaken: nil),
- Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953019053", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953019063", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804272", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953516751", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953019078", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804212", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804197", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953804217", dateTaken: nil), Nearby.FlickrPhoto(title: "", remoteURL: nil, photoID: "49953516736", dateTaken: nil),
-*/

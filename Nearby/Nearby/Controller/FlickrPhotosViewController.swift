@@ -8,33 +8,48 @@
 import UIKit
 
 class FlickrPhotosViewController: UIViewController {
+    
 
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    let mainVC = MapViewController()
+    private var photoModel = PhotoModel()
+    var api = FlickrAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupCollectionView()
+        
+        loadData()
+        api.getData(lat: mainVC.latitude, long: mainVC.longitude) { (result) in
+            print(result)
+        }
     }
     
-    func setupCollectionView() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
+    
+    private func loadData() {
+        photoModel.fetchPopularMoviesData { [weak self] in
+            print("welp")
+            self?.collectionView.dataSource = self
+            self?.collectionView.reloadData()
+        }
     }
     
 
 }
 
-extension FlickrPhotosViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension FlickrPhotosViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        print("setction:\(section)")
+        return photoModel.numberOfRowsInSections(section: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! FlickrPhotosCollectionViewCell
         
+        let item = photoModel.cellForRowAt(indexPath: indexPath)
+        cell.setCellWithValuesOf(item)
         return cell
     }
-    
-    
 }
