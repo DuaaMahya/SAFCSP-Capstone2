@@ -30,7 +30,16 @@ final class FlickrAPI {
     
     static let shared = FlickrAPI()
     private var dataTask: URLSessionDataTask?
+<<<<<<< Updated upstream
     var locations = MapViewController()
+=======
+    var locations = GlobalVariables()
+    let session: URLSession
+    
+    init(configuration: URLSessionConfiguration = .default) {
+        self.session = URLSession(configuration: configuration)
+    }
+>>>>>>> Stashed changes
     
     //MARK: - Cache Image
     func storeImage(urlString: String, image: UIImage) {
@@ -122,6 +131,7 @@ final class FlickrAPI {
         dataTask?.resume()
     }
     
+<<<<<<< Updated upstream
     
     func getData(lat: Double, long: Double, completion: @escaping (Result<FlickrResponse,Error>) -> Void) {
         
@@ -167,4 +177,6 @@ final class FlickrAPI {
         }
         
     }
+=======
+>>>>>>> Stashed changes
 }
