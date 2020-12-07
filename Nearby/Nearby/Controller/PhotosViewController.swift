@@ -28,7 +28,6 @@ class PhotosViewController: UIViewController {
     
     private func loadData() {
         photoModel.fetchPhotosData { [weak self] in
-            print("welp")
             self?.tableView.dataSource = self
             self?.tableView.reloadData()
         }

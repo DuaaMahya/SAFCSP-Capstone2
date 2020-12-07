@@ -9,24 +9,70 @@ import XCTest
 @testable import Nearby
 
 class NearbyTests: XCTestCase {
+    
+    var fetcher: FlickrAPI!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        
+        fetcher = FlickrAPI(configuration: Constants.sessionConfiguration)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testResultFromValidHTTPResponseAndValidData() {
+        fetcher.handler(data: Constants.jsonData,
+                                     response: Constants.okResponse,
+                                     error: nil) { (result) in
+            switch result {
+            case .success(let response):
+                XCTAssert(response.photosInfo.photos.count == 1)
+                let thePhoto = response.photosInfo.photos[0]
+                XCTAssertEqual(thePhoto.photoID, Constants.id)
+                XCTAssertEqual(thePhoto.title, Constants.title)
+            default:
+                XCTFail("Result contains Failure, but Success was expected.")
+            }
+        }
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testResultFromInvalidHTTPResponseAndValidData() {
+        fetcher.handler(data: Constants.invalidJsonData,
+                        response: Constants.okResponse,
+                        error: nil) { (result) in
+            
+            switch result {
+            case .failure(let error):
+                XCTFail("Result contains Failure\(error.localizedDescription)")
+            default:
+                break
+            }
+        }
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testResultFromInvalidHTTPResponseAndInvalidData() {
+        fetcher.handler(data: Constants.invalidJsonData,
+                        response: Constants.notOkResponse,
+                        error: nil) { (result) in
+            
+            switch result {
+            case .failure(let error):
+                XCTFail("Result contains Failure\(error.localizedDescription)")
+            default:
+                break
+            }
+        }
+    }
+    
+    func testResultFromValidHTTPResponseAndNillData() {
+        fetcher.handler(data: nil,
+                        response: Constants.okResponse,
+                        error: nil) { (result) in
+            
+            switch result {
+            case .failure(let error):
+                XCTFail("Result contains Failure\(error.localizedDescription)")
+            default:
+                break
+            }
         }
     }
 
