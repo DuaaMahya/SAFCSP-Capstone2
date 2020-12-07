@@ -17,6 +17,9 @@ class PhotosTableViewCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     
     private var photoURLString = ""
+    private var photoModel = PhotoModel()
+    
+    let mainVC = MapViewController()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -68,10 +71,13 @@ class PhotosTableViewCell: UITableViewCell {
         }
         
         // clear photo first
-        self.flickrPostTitleLabel.text = "--"
         self.flickrImageView.image = nil
         
         fetchImageData(from: photoURL)
+        
+
+        
+        
         
     }
     
@@ -97,4 +103,31 @@ class PhotosTableViewCell: UITableViewCell {
             
         }.resume()
     }
+    
+//    func calculateBetweenCoordinates(id: String) -> String {
+//
+//        if long == mainVC.longitude, lat == mainVC.latitude {
+//
+//            let latDifference = lat + mainVC.latitude
+//            let distance = 111.2 * latDifference
+//            return "\(distance)km"
+//
+//        } else if lat != mainVC.latitude, long == mainVC.longitude {
+//
+//            let latDifference = lat - mainVC.latitude
+//            let distance = 111.2 * latDifference
+//            return "\(distance)km"
+//
+//        } else if lat == mainVC.latitude, long != mainVC.longitude {
+//
+//            let longDifference = long - mainVC.longitude
+//            let distance = 111.2 * longDifference * cos(lat)
+//            return "\(distance)km"
+//
+//        } else {
+//            return "couldn't calculate distance"
+//        }
+//
+//
+//    }
 }
