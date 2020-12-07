@@ -21,14 +21,11 @@ class FlickrPhotosViewController: UIViewController {
 
         
         loadData()
-        api.getData(lat: mainVC.latitude, long: mainVC.longitude) { (result) in
-            print(result)
-        }
     }
     
     
     private func loadData() {
-        photoModel.fetchPopularMoviesData { [weak self] in
+        photoModel.fetchPhotosData { [weak self] in
             print("welp")
             self?.collectionView.dataSource = self
             self?.collectionView.reloadData()

@@ -107,6 +107,11 @@ class MapViewController: UIViewController {
         updateUI()
         setupLocationManger()
         
+        let api = FlickrAPI()
+        api.getData(lat: self.latitude, long: self.longitude) { (result) in
+            print(result)
+        }
+        
     }
     
     //MARK: - Functions
