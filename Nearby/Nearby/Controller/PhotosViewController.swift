@@ -20,17 +20,14 @@ class PhotosViewController: UIViewController {
 
         
         loadData()
-        api.getData(lat: mainVC.latitude, long: mainVC.longitude) { (result) in
-            print(result)
-        }
         
         
-        tableView.backgroundColor = UIColor(named: "BGColor")
+        view.backgroundColor = UIColor(named: "BGColor")
     }
     
     
     private func loadData() {
-        photoModel.fetchPopularMoviesData { [weak self] in
+        photoModel.fetchPhotosData { [weak self] in
             print("welp")
             self?.tableView.dataSource = self
             self?.tableView.reloadData()

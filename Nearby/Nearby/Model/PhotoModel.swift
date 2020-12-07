@@ -12,18 +12,6 @@ class PhotoModel {
     private var flickrAPI = FlickrAPI()
     private var photos = [FlickrPhoto]()
     
-    func fetchPhotosData(lat: Double, long: Double, completion: @escaping () -> ()) {
-        flickrAPI.getData(lat: lat, long: long) { [weak self] (result) in
-            
-            switch result {
-            case .success(let photoList):
-                self?.photos = photoList.photosInfo.photos
-            case .failure(let error):
-                print("Error Processing json data. \(error)")
-            }
-        }
-    }
-    
     func numberOfRowsInSections(section: Int) -> Int {
         if photos.count != 0 {
             return photos.count
@@ -36,10 +24,10 @@ class PhotoModel {
         return photos[indexPath.row]
     }
     
-    func fetchPopularMoviesData(completion: @escaping () -> ()) {
+    func fetchPhotosData(completion: @escaping () -> ()) {
         
         // weak self - prevent retain cycles
-        flickrAPI.getPopularMoviesData { [weak self] (result) in
+        flickrAPI.getFlickrData { [weak self] (result) in
             
             switch result {
             case .success(let listOf):

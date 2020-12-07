@@ -155,7 +155,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="U5f-Sd-CDL">
                                 <rect key="frame" x="0.0" y="140" width="414" height="722"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="BGColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="photosCell" rowHeight="214" id="mit-O2-gZC" customClass="PhotosTableViewCell" customModule="Nearby" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="214"/>
@@ -211,7 +211,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="BGColor"/>
                                                     <constraints>
                                                         <constraint firstItem="pfT-fW-9sj" firstAttribute="width" secondItem="UcM-X5-QqR" secondAttribute="width" id="1H4-EG-0Zi"/>
                                                         <constraint firstItem="UcM-X5-QqR" firstAttribute="top" secondItem="qg0-VY-zYa" secondAttribute="topMargin" constant="10" id="2bS-65-0Lx"/>
@@ -227,6 +227,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" name="BGColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="qg0-VY-zYa" secondAttribute="trailing" id="9vq-aj-mWP"/>
                                                 <constraint firstItem="qg0-VY-zYa" firstAttribute="leading" secondItem="Oj7-vt-jcZ" secondAttribute="leading" id="E9u-Bi-PZI"/>
@@ -234,6 +235,7 @@
                                                 <constraint firstItem="qg0-VY-zYa" firstAttribute="top" secondItem="Oj7-vt-jcZ" secondAttribute="top" id="dMr-1O-Baw"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="BGColor"/>
                                         <connections>
                                             <outlet property="containerView" destination="mNo-pl-PGm" id="uza-YA-dsY"/>
                                             <outlet property="flickrImageView" destination="UcM-X5-QqR" id="59a-9D-9pp"/>
@@ -245,7 +247,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LdW-B5-8sK"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="BGColor"/>
                         <constraints>
                             <constraint firstItem="LdW-B5-8sK" firstAttribute="bottom" secondItem="U5f-Sd-CDL" secondAttribute="bottom" id="3bm-BB-dea"/>
                             <constraint firstItem="U5f-Sd-CDL" firstAttribute="top" secondItem="LdW-B5-8sK" secondAttribute="top" id="dwd-qH-3sp"/>
@@ -261,6 +263,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCX-2Y-xPy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="805.58035714285711"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jSb-2s-QTX">
+            <objects>
+                <viewController id="7lB-UB-AyD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hWI-yj-90t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="v1t-bO-Be5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tsF-gx-TiC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1865" y="806"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rp6-kl-6j6">
@@ -284,6 +301,9 @@
     <resources>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="images" width="190" height="193"/>
+        <namedColor name="BGColor">
+            <color red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Color">
             <color red="0.92549019607843142" green="0.94117647058823528" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

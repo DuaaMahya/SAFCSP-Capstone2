@@ -20,8 +20,6 @@
 		408A27E42576446C00EFD64F /* NearbyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408A27E32576446C00EFD64F /* NearbyUITests.swift */; };
 		408A27FE257652E200EFD64F /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408A27FD257652E200EFD64F /* FlickrAPI.swift */; };
 		408A280D2576E75600EFD64F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408A280C2576E75600EFD64F /* Utilities.swift */; };
-		408A28122576E87600EFD64F /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408A28112576E87600EFD64F /* PulseAnimation.swift */; };
-		408B6C03257C48BC007DAE00 /* PhotoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408B6C02257C48BC007DAE00 /* PhotoCache.swift */; };
 		40FA1E04257CFDE800A463E0 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FA1E03257CFDE800A463E0 /* PhotoModel.swift */; };
 		40FA1E56257D52A200A463E0 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FA1E55257D52A200A463E0 /* PhotosTableViewCell.swift */; };
 		40FA1E69257D54B900A463E0 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FA1E68257D54B900A463E0 /* PhotosViewController.swift */; };
@@ -64,8 +62,6 @@
 		408A27E52576446C00EFD64F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		408A27FD257652E200EFD64F /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		408A280C2576E75600EFD64F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		408A28112576E87600EFD64F /* PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
-		408B6C02257C48BC007DAE00 /* PhotoCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCache.swift; sourceTree = "<group>"; };
 		40FA1E03257CFDE800A463E0 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		40FA1E55257D52A200A463E0 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		40FA1E68257D54B900A463E0 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +115,7 @@
 		408A27C02576445000EFD64F /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
+				40FA1E82257DC30B00A463E0 /* Network */,
 				408A27F72576508300EFD64F /* Model */,
 				408A27FB2576509B00EFD64F /* View */,
 				408A27FC2576523900EFD64F /* Controller */,
@@ -154,10 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				4054EB9B2579186300089854 /* FlickrPhoto.swift */,
-				408A27FD257652E200EFD64F /* FlickrAPI.swift */,
 				40FA1E03257CFDE800A463E0 /* PhotoModel.swift */,
-				408B6C02257C48BC007DAE00 /* PhotoCache.swift */,
-				408A28112576E87600EFD64F /* PulseAnimation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,6 +182,14 @@
 				408A280C2576E75600EFD64F /* Utilities.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		40FA1E82257DC30B00A463E0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				408A27FD257652E200EFD64F /* FlickrAPI.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,8 +331,6 @@
 				4054EB9C2579186300089854 /* FlickrPhoto.swift in Sources */,
 				403A734D2577D80E00C6E1BD /* FlickrPhotosViewController.swift in Sources */,
 				403A73402577D79100C6E1BD /* FlickrPhotosCollectionViewCell.swift in Sources */,
-				408B6C03257C48BC007DAE00 /* PhotoCache.swift in Sources */,
-				408A28122576E87600EFD64F /* PulseAnimation.swift in Sources */,
 				40FA1E04257CFDE800A463E0 /* PhotoModel.swift in Sources */,
 				408A27C42576445000EFD64F /* SceneDelegate.swift in Sources */,
 			);
