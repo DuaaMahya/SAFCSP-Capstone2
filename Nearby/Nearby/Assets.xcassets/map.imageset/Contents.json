@@ -1,16 +1,49 @@
 {
   "images" : [
     {
+      "filename" : "lightMap.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
       "filename" : "map.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "lightMap@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
       "filename" : "map@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "lightMap@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
       "filename" : "map@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
