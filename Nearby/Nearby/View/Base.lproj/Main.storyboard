@@ -3,11 +3,9 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,127 +21,14 @@
                     </view>
                     <navigationItem key="navigationItem" title=" " id="Tzp-XT-DeC">
                         <barButtonItem key="backBarButtonItem" title=" " id="bHK-P4-T2B"/>
-                        <barButtonItem key="rightBarButtonItem" title="=" id="U31-gM-7Au">
-                            <connections>
-                                <segue destination="XPY-h1-EUY" kind="show" identifier="tableVC" id="E6D-i2-FQJ"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="1Zh-hQ-hYX" kind="show" identifier="collectionVC" id="rxT-1d-h51"/>
+                        <segue destination="XPY-h1-EUY" kind="show" identifier="tableVC" id="ZDf-kz-rG3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="93.75"/>
-        </scene>
-        <!--Photos nearby -->
-        <scene sceneID="kqS-65-BCr">
-            <objects>
-                <viewController id="1Zh-hQ-hYX" customClass="FlickrPhotosViewController" customModule="Nearby" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nSK-zw-9it">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-Zd-hJl">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="6" minimumInteritemSpacing="16" id="s8s-GO-7Rt">
-                                    <size key="itemSize" width="110" height="184"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="6" minY="6" maxX="6" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="vWU-xg-dKA" customClass="FlickrPhotosCollectionViewCell" customModule="Nearby" customModuleProvider="target">
-                                        <rect key="frame" x="6" y="6" width="110" height="183.5"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ksl-Gl-Dv6">
-                                            <rect key="frame" x="0.0" y="0.0" width="110" height="183.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ol3-df-DBi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="183.5"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images" translatesAutoresizingMaskIntoConstraints="NO" id="gt9-el-Jft">
-                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="140"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="110" id="7vF-ss-QE4"/>
-                                                                <constraint firstAttribute="height" constant="140" id="KwN-Ua-sSA"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyU-lK-yWh">
-                                                            <rect key="frame" x="0.0" y="145" width="110" height="13.5"/>
-                                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="11"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IIP-PA-0rX">
-                                                            <rect key="frame" x="0.0" y="163.5" width="110" height="20"/>
-                                                            <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Fj-KR-vT8">
-                                                                    <rect key="frame" x="0.0" y="3" width="30" height="13.5"/>
-                                                                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="30" id="pRm-Du-dyt"/>
-                                                                    </constraints>
-                                                                    <imageReference key="image" image="eye" catalog="system" symbolScale="small"/>
-                                                                </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-4Z-i2H">
-                                                                    <rect key="frame" x="30" y="0.0" width="80" height="20"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
-                                                    </subviews>
-                                                </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qze-7f-LTC">
-                                                    <rect key="frame" x="84.5" y="8" width="17.5" height="12"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <size key="shadowOffset" width="0.0" height="1"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="ol3-df-DBi" firstAttribute="leading" secondItem="Ksl-Gl-Dv6" secondAttribute="leading" id="7c9-1W-LSG"/>
-                                                <constraint firstItem="ol3-df-DBi" firstAttribute="top" secondItem="Ksl-Gl-Dv6" secondAttribute="top" id="UKU-nZ-pjZ"/>
-                                                <constraint firstItem="qze-7f-LTC" firstAttribute="top" secondItem="Ksl-Gl-Dv6" secondAttribute="top" constant="8" id="Zgk-QS-k38"/>
-                                                <constraint firstAttribute="trailing" secondItem="qze-7f-LTC" secondAttribute="trailing" constant="8" id="pd5-h8-TJV"/>
-                                                <constraint firstAttribute="bottom" secondItem="ol3-df-DBi" secondAttribute="bottom" id="rlu-m3-E95"/>
-                                                <constraint firstItem="qze-7f-LTC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ksl-Gl-Dv6" secondAttribute="leading" constant="20" symbolic="YES" id="uUq-J2-aD1"/>
-                                                <constraint firstAttribute="trailing" secondItem="ol3-df-DBi" secondAttribute="trailing" id="vqm-0M-gEs"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
-                                        <connections>
-                                            <outlet property="flickrImageView" destination="gt9-el-Jft" id="T2i-kV-HMc"/>
-                                            <outlet property="flickrPostDistanceLabel" destination="qze-7f-LTC" id="hjX-vE-Wf0"/>
-                                            <outlet property="flickrPostTitleLabel" destination="NyU-lK-yWh" id="Z5R-9R-3R8"/>
-                                            <outlet property="flickrPostViewerCountLabel" destination="OKI-4Z-i2H" id="yLQ-sM-isO"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="BOw-53-Sv8"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="BOw-53-Sv8" firstAttribute="trailing" secondItem="Ydz-Zd-hJl" secondAttribute="trailing" id="6eV-NO-NKX"/>
-                            <constraint firstItem="Ydz-Zd-hJl" firstAttribute="top" secondItem="BOw-53-Sv8" secondAttribute="top" id="IRb-4R-TH3"/>
-                            <constraint firstItem="BOw-53-Sv8" firstAttribute="bottom" secondItem="Ydz-Zd-hJl" secondAttribute="bottom" id="vre-jl-8Lu"/>
-                            <constraint firstItem="Ydz-Zd-hJl" firstAttribute="leading" secondItem="BOw-53-Sv8" secondAttribute="leading" id="ysX-66-HXa"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Photos nearby " id="bbp-FE-Xys"/>
-                    <connections>
-                        <outlet property="collectionView" destination="Ydz-Zd-hJl" id="5Pd-IO-lSt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mL9-WS-YBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1866.4000000000001" y="93.103448275862078"/>
         </scene>
         <!--Nearby Photos-->
         <scene sceneID="Uko-Tr-oZY">
@@ -169,9 +54,9 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mNo-pl-PGm">
                                                             <rect key="frame" x="28" y="30" width="358" height="154"/>
-                                                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                            <color key="backgroundColor" name="mainBGColor"/>
                                                         </view>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images" translatesAutoresizingMaskIntoConstraints="NO" id="UcM-X5-QqR">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UcM-X5-QqR">
                                                             <rect key="frame" x="28" y="18" width="358" height="178"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="208" id="l5e-rx-FFc"/>
@@ -299,19 +184,17 @@
         </scene>
     </scenes>
     <resources>
-        <image name="eye" catalog="system" width="128" height="81"/>
-        <image name="images" width="190" height="193"/>
         <namedColor name="BGColor">
             <color red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Color">
             <color red="0.92549019607843142" green="0.94117647058823528" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="mainBGColor">
+            <color red="0.87450980392156863" green="0.73725490196078436" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

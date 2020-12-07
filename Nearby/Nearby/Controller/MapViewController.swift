@@ -8,13 +8,17 @@
 import UIKit
 import CoreLocation
 
+class GlobalVariables {
+    var latitude: Double = 24.85389957638025
+    var longitude: Double = 46.71340212361398
+}
+
 class MapViewController: UIViewController {
 
+    let variables = GlobalVariables()
     
     // CoreLocation
     let locationManger = CLLocationManager()
-    var latitude: Double = 37.7994
-    var longitude: Double = 122.3950
     // geocoder
     let geocoder = CLGeocoder()
     var placemark: CLPlacemark?
@@ -107,10 +111,6 @@ class MapViewController: UIViewController {
         updateUI()
         setupLocationManger()
         
-        let api = FlickrAPI()
-        api.getData(lat: self.latitude, long: self.longitude) { (result) in
-            print(result)
-        }
         
     }
     
@@ -233,9 +233,6 @@ class MapViewController: UIViewController {
         opacityAnimation()
         
         DispatchQueue.main.asyncAfter(deadline: .now()+3) {
-            
-
-            
             self.pulseLayer.removeAllAnimations()
             self.fetchButton.setTitle("Done!", for: .normal)
             self.performSegue(withIdentifier: "tableVC", sender: nil)
@@ -247,13 +244,15 @@ class MapViewController: UIViewController {
 extension MapViewController: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        
-        latitude = location.coordinate.latitude
-        longitude = location.coordinate.longitude
+        guard let location = locations.last else { return }
         
         
-        print("latitude: \(latitude), logitude: \(longitude)")
+        variables.latitude = location.coordinate.latitude
+        variables.longitude = location.coordinate.longitude
+        
+        //guard let latitude = latitude, let longitude = longitude else { return }
+        
+        print("latitude: \(variables.latitude), logitude: \(variables.longitude)")
         
         if location != nil {
             if !isPerformingReverseGeocoding {
@@ -270,7 +269,6 @@ extension MapViewController: CLLocationManagerDelegate{
                     
                     self.isPerformingReverseGeocoding = false
                     self.updateUI()
-                    self.locationManger.stopUpdatingLocation()
                 }
             }
         }
